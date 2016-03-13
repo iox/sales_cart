@@ -1,0 +1,8 @@
+%page{title: "Home"}
+  %body:/
+  %content:
+    %header.content-header.hero-unit
+      %h1 Welcome
+      %section.welcome-message
+        %h3 Congratulations! Your Hobo Rails App is up and running
+    %section.content-body
