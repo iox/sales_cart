@@ -49,8 +49,8 @@ group :development do
 end
 
 
-#gem 'hobo', github: "Hobo/hobo", branch: 'haml_support'
-gem 'hobo', path: '../../hobo'
+gem 'hobo', github: "Hobo/hobo", branch: 'haml_support'
+# gem 'hobo', path: '../../hobo'
 gem 'bootswatch-rails', '0.5.0'
 gem 'hobo-metasearch', :git => "git://github.com/suyccom/hobo-metasearch"
 gem 'render_csv'
@@ -63,8 +63,8 @@ gem 'responders', '~> 2.0'
 gem 'quiet_assets', group: :development
 # Hobo's version of will_paginate is required.
 gem 'hobo_will_paginate'
-gem 'hobo_bootstrap', path: '../../hobo_bootstrap'
+gem 'hobo_bootstrap', github: "Hobo/hobo_bootstrap"
 gem 'hobo_jquery_ui', '2.2.5'
-gem 'hobo_bootstrap_ui', path: '../../hobo_bootstrap_ui'
+gem 'hobo_bootstrap_ui', github: "Hobo/hobo_bootstrap_ui"
 gem 'jquery-ui-themes', '~> 0.0.4'
 gem 'sprockets-rails' , '~> 3.0'

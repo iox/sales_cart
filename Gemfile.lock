@@ -1,20 +1,13 @@
 GIT
-  remote: git://github.com/suyccom/hobo-metasearch
-  revision: 2ee3c30eaabf8140801efae8cadb3f431405b42e
-  specs:
-    hobo-metasearch (0.1)
-      ransack
-
-PATH
-  remote: ../../hobo
+  remote: git://github.com/Hobo/hobo.git
+  revision: 3df4503300c79a1d6d88bae582754b54d7ff5ca5
+  branch: haml_support
   specs:
     dryml (2.2.5)
       actionpack
-      haml
       hobo_support (= 2.2.5)
     hobo (2.2.5)
       dryml (= 2.2.5)
-      haml
       hobo_fields (= 2.2.5)
       hobo_support (= 2.2.5)
       hobo_will_paginate
@@ -32,20 +25,29 @@ PATH
     hobo_support (2.2.5)
       rails (~> 4.2.4)
 
-PATH
-  remote: ../../hobo_bootstrap
+GIT
+  remote: git://github.com/Hobo/hobo_bootstrap.git
+  revision: 30d4a84c52a5dae2155b2ef83e6717f4ef369f03
   specs:
     hobo_bootstrap (2.2.5)
       bootstrap-sass (~> 2.1)
       hobo_jquery (>= 2.0)
       hobo_will_paginate-bootstrap
 
-PATH
-  remote: ../../hobo_bootstrap_ui
+GIT
+  remote: git://github.com/Hobo/hobo_bootstrap_ui.git
+  revision: 2185484a12f00f2249c315809a868bdf2f1a3756
   specs:
     hobo_bootstrap_ui (2.2.5)
       bootstrap-datepicker-rails
       hobo_bootstrap (>= 2.0)
+
+GIT
+  remote: git://github.com/suyccom/hobo-metasearch
+  revision: 2ee3c30eaabf8140801efae8cadb3f431405b42e
+  specs:
+    hobo-metasearch (0.1)
+      ransack
 
 GEM
   remote: https://rubygems.org/
