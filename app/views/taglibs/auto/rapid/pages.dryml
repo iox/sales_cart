@@ -6,9 +6,115 @@
 <def tag="main-nav">
   <navigation class="main-nav" merge-attrs param="default">
     <nav-item href="#{base_url}/">Home</nav-item>
+    <nav-item with="&Item"><ht key="item.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&ProductType"><ht key="product_type.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
+    <nav-item with="&Purchase"><ht key="purchase.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
+    <nav-item with="&Sale"><ht key="sale.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
   </navigation>
 </def>
+
+
+
+
+<!-- ====== Item Pages ====== -->
+
+<def tag="index-page" for="Item">
+  <page merge title="#{ht 'item.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page item" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="item.index.heading">
+          <model-name-human model="&model"/>
+        </ht>
+      </h2>
+
+      <p param="count" if>
+        <ht key="item.collection.count" count="&collection_count">
+          <count summary/>
+        </ht>
+      </p>
+    </content-header:>
+
+    <content-body: param>
+
+      <page-nav param="top-page-nav"/>
+
+      <collection param/>
+
+      <page-nav param="bottom-page-nav"/>
+
+
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="Item">
+  <page merge title="#{ht 'item.new.title', :default=>[' New Item'] }">
+    <body: class="new-page item" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="item.new.heading">
+          New Item
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <form param>
+        <submit: label="#{ht 'item.actions.create', :default=>['Create Item']}"/>
+      </form>
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="Item">
+  <page merge title="#{ht 'item.show.title', :default=>['Item'], :name => name(:no_wrapper => true) }" without-aside >
+
+    <body: class="show-page item" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="item.show.heading" name="#{name(:no_wrapper => true)}">
+          Item <name/>
+        </ht>
+      </h2>
+
+      <record-flags fields="" param/>
+    </content-header:>
+
+    <content-body: param>
+      <field-list fields="expiration_date, sale_price, purchase_price, product_type, purchase, sale" param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="Item">
+  <page merge title="#{ht 'item.edit.title', :default=>['Edit Item'], :name => name(:no_wrapper => true) }">
+
+    <body: class="edit-page item" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="item.edit.heading" name="#{name(:no_wrapper => true)}">
+          Edit Item
+        </ht>
+      </h2>
+      <delete-button label="#{ht 'item.actions.delete', :default=>['Remove This Item']}" param/>
+    </content-header:>
+
+    <content-body: param>
+      <form param/>
+    </content-body:>
+
+  </page>
+</def>
+
 
 
 
@@ -93,7 +199,7 @@
     </content-header:>
 
     <content-body: param>
-      <field-list fields="sell_price, purchase_price" param/>
+      <field-list fields="public_price, material_icon, color_for_icon" param/>
     </content-body:>
 
   </page>
@@ -112,6 +218,224 @@
         </ht>
       </h2>
       <delete-button label="#{ht 'product_type.actions.delete', :default=>['Remove This Product type']}" param/>
+    </content-header:>
+
+    <content-body: param>
+      <form param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+
+
+
+<!-- ====== Purchase Pages ====== -->
+
+<def tag="index-page" for="Purchase">
+  <page merge title="#{ht 'purchase.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page purchase" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="purchase.index.heading">
+          <model-name-human model="&model"/>
+        </ht>
+      </h2>
+
+      <p param="count" if>
+        <ht key="purchase.collection.count" count="&collection_count">
+          <count summary/>
+        </ht>
+      </p>
+    </content-header:>
+
+    <content-body: param>
+      <a action="new" to="&model" param="new-link">
+        <ht key="purchase.actions.new">New Purchase</ht>
+      </a>
+
+      <page-nav param="top-page-nav"/>
+
+      <collection param/>
+
+      <page-nav param="bottom-page-nav"/>
+
+
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="Purchase">
+  <page merge title="#{ht 'purchase.new.title', :default=>[' New Purchase'] }">
+    <body: class="new-page purchase" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="purchase.new.heading">
+          New Purchase
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <form param>
+        <submit: label="#{ht 'purchase.actions.create', :default=>['Create Purchase']}"/>
+      </form>
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="Purchase">
+  <page merge title="#{ht 'purchase.show.title', :default=>['Purchase'], :name => name(:no_wrapper => true) }" without-aside >
+
+    <body: class="show-page purchase" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="purchase.show.heading" name="#{name(:no_wrapper => true)}">
+          Purchase <name/>
+        </ht>
+      </h2>
+
+      <record-flags fields="" param/>
+    </content-header:>
+
+    <content-body: param>
+      <field-list fields="purchase_date, total" param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="Purchase">
+  <page merge title="#{ht 'purchase.edit.title', :default=>['Edit Purchase'], :name => name(:no_wrapper => true) }">
+
+    <body: class="edit-page purchase" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="purchase.edit.heading" name="#{name(:no_wrapper => true)}">
+          Edit Purchase
+        </ht>
+      </h2>
+      <delete-button label="#{ht 'purchase.actions.delete', :default=>['Remove This Purchase']}" param/>
+    </content-header:>
+
+    <content-body: param>
+      <form param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+
+
+
+<!-- ====== Sale Pages ====== -->
+
+<def tag="index-page" for="Sale">
+  <page merge title="#{ht 'sale.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page sale" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="sale.index.heading">
+          <model-name-human model="&model"/>
+        </ht>
+      </h2>
+
+      <p param="count" if>
+        <ht key="sale.collection.count" count="&collection_count">
+          <count summary/>
+        </ht>
+      </p>
+    </content-header:>
+
+    <content-body: param>
+      <a action="new" to="&model" param="new-link">
+        <ht key="sale.actions.new">New Sale</ht>
+      </a>
+
+      <page-nav param="top-page-nav"/>
+
+      <collection param/>
+
+      <page-nav param="bottom-page-nav"/>
+
+
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="Sale">
+  <page merge title="#{ht 'sale.new.title', :default=>[' New Sale'] }">
+    <body: class="new-page sale" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="sale.new.heading">
+          New Sale
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <form param>
+        <submit: label="#{ht 'sale.actions.create', :default=>['Create Sale']}"/>
+      </form>
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="Sale">
+  <page merge title="#{ht 'sale.show.title', :default=>['Sale'], :name => name(:no_wrapper => true) }" without-aside >
+
+    <body: class="show-page sale" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="sale.show.heading" name="#{name(:no_wrapper => true)}">
+          Sale <name/>
+        </ht>
+      </h2>
+
+      <record-flags fields="" param/>
+
+      <a action="edit" if="&can_edit?" param="edit-link">
+        <ht key="sale.actions.edit" name="#{name(:no_wrapper => true)}">
+          Edit Sale
+        </ht>
+      </a>
+    </content-header:>
+
+    <content-body: param>
+      <field-list fields="sale_date, total" param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="Sale">
+  <page merge title="#{ht 'sale.edit.title', :default=>['Edit Sale'], :name => name(:no_wrapper => true) }">
+
+    <body: class="edit-page sale" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="sale.edit.heading" name="#{name(:no_wrapper => true)}">
+          Edit Sale
+        </ht>
+      </h2>
+      <delete-button label="#{ht 'sale.actions.delete', :default=>['Remove This Sale']}" param/>
     </content-header:>
 
     <content-body: param>

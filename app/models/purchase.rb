@@ -1,24 +1,22 @@
-class ProductType < ActiveRecord::Base
+class Purchase < ActiveRecord::Base
 
   hobo_model # Don't put anything above this
 
   fields do
-    name           :string
-    public_price   :decimal, :precision => 8, :scale => 2
-    material_icon  :string
-    color_for_icon :string
+    purchase_date :date, :required
+    total :decimal, :precision => 8, :scale => 2
     timestamps
   end
-  attr_accessible :name, :public_price, :material_icon, :color_for_icon
+  attr_accessible :purchase_date, :items
 
-  has_many :items
+  has_many :items, :dependent => :destroy, :accessible => true
 
-  def available_count
-    items.available.count
+  def name
+    "Purchase #{id}"
   end
 
-  def sold_count
-    items.sold.count
+  def update_total
+    update_attribute(:total, items.reload.sum(:purchase_price))
   end
 
   # --- Permissions --- #
@@ -38,5 +36,7 @@ class ProductType < ActiveRecord::Base
   def view_permitted?(field)
     true
   end
+
+
 
 end

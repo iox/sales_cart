@@ -11,12 +11,42 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160313062724) do
+ActiveRecord::Schema.define(version: 20160313085412) do
+
+  create_table "items", force: :cascade do |t|
+    t.date     "expiration_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "purchase_id"
+    t.integer  "product_type_id"
+    t.decimal  "sale_price",      precision: 8, scale: 2
+    t.decimal  "purchase_price",  precision: 8, scale: 2
+    t.integer  "sale_id"
+  end
+
+  add_index "items", ["product_type_id"], name: "index_items_on_product_type_id"
+  add_index "items", ["purchase_id"], name: "index_items_on_purchase_id"
+  add_index "items", ["sale_id"], name: "index_items_on_sale_id"
 
   create_table "product_types", force: :cascade do |t|
     t.string   "name"
-    t.decimal  "sell_price",     precision: 8, scale: 2
-    t.decimal  "purchase_price", precision: 8, scale: 2
+    t.decimal  "public_price",   precision: 8, scale: 2
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "material_icon"
+    t.string   "color_for_icon"
+  end
+
+  create_table "purchases", force: :cascade do |t|
+    t.date     "purchase_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.decimal  "total",         precision: 8, scale: 2
+  end
+
+  create_table "sales", force: :cascade do |t|
+    t.date     "sale_date"
+    t.decimal  "total"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

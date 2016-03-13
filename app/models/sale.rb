@@ -1,24 +1,23 @@
-class ProductType < ActiveRecord::Base
+class Sale < ActiveRecord::Base
 
   hobo_model # Don't put anything above this
 
   fields do
-    name           :string
-    public_price   :decimal, :precision => 8, :scale => 2
-    material_icon  :string
-    color_for_icon :string
+    sale_date :date
+    total     :decimal
     timestamps
   end
-  attr_accessible :name, :public_price, :material_icon, :color_for_icon
+  attr_accessible :sale_date, :total, :items
 
   has_many :items
 
-  def available_count
-    items.available.count
+  before_destroy :mark_items_as_available
+  def mark_items_as_available
+    items.update_all("sale_id = NULL")
   end
 
-  def sold_count
-    items.sold.count
+  def update_total
+    update_attribute(:total, items.reload.sum(:sale_price))
   end
 
   # --- Permissions --- #

@@ -1,0 +1,6 @@
+<index-page>
+  <collection: replace>
+    <table-plus-with-filters with="&@items" fields="this, product_type, expiration_date, purchase_price, sale_price, status" filters="product_type, expiration_date"/>
+    <%= link_to "<i class='icon-list'></i> Export to CSV".html_safe, params.merge({:format => 'text'}), class: 'btn pull-right' %>
+  </collection:>
+</index-page>

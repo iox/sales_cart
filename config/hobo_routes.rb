@@ -2,7 +2,7 @@
 # You can add your own routes in the config/routes.rb file
 # which will override the routes in this file.
 
-Vanilla::Application.routes.draw do
+SalesCart::Application.routes.draw do
 
 
   # Resource routes for controller product_types
@@ -28,6 +28,18 @@ Vanilla::Application.routes.draw do
   get 'logout(.:format)' => 'users#logout', :as => 'user_logout'
   get 'forgot_password(.:format)' => 'users#forgot_password', :as => 'user_forgot_password'
   post 'forgot_password(.:format)' => 'users#forgot_password', :as => 'user_forgot_password_post'
+
+
+  # Resource routes for controller items
+  resources :items, :only => [:index, :show]
+
+
+  # Resource routes for controller purchases
+  resources :purchases, :only => [:index, :new, :show, :create, :destroy]
+
+
+  # Resource routes for controller sales
+  resources :sales
 
   namespace :concerns do
 

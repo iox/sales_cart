@@ -1,0 +1,47 @@
+<new-page>
+  <content:>
+    <div class="row-fluid">
+      <div class="span7">
+        <product-icons/>
+      </div>
+      <div class="span5">
+        <sales-form/>
+      </div>
+    </div>
+  </content:>
+</new-page>
+
+
+<def tag="product-icons">
+  <repeat with="&ProductType.all">
+    <a class="btn btn-large btn-product" href="#" onclick="addItem(#{this.id}, '#{this.name}', #{this.public_price}); return false;">
+      <i class="material-icons md-48" style="color: #{this.color_for_icon}"><this.material-icon/></i>
+      <p><this.name/></p>
+    </a>
+  </repeat>
+  <div class="clear">&nbsp;</div>
+</def>
+
+
+
+
+<def tag="sales-form">
+  <div class="well" id="sales-form">
+    <div style="min-height: 200px; margin-bottom: 10px; font-size: 1.5em">
+      <div class="alert alert-success" style="display: none">
+        <button data-dismiss="alert" class="close" type="button">×</button>
+        <strong>OK. The sale was saved.</strong>
+      </div>
+      <table style="width: 100%; " id="cart-table">
+      </table>
+    </div>
+    <a onclick="pay()" href="#" class="pay-button btn-block btn btn-success btn-large">
+      <h2>Pay <span id="total">kr.0</span></h2>
+    </a>
+    <br/>
+    <a href="/" class="btn-block cancel-button btn btn-danger btn-large">
+      <h2>Cancel</h2>
+    </a>
+    <div class="clear">&nbsp;</div>
+  </div>
+</def>

@@ -1,12 +1,48 @@
 <!-- AUTOMATICALLY GENERATED FILE - DO NOT EDIT -->
 
 
+<def tag="form" for="Item">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="expiration_date, sale_price, purchase_price, product_type, purchase, sale" param/>
+    <div param="actions">
+      <submit label="#{ht 'item.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
 <def tag="form" for="ProductType">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="name, sell_price, purchase_price" param/>
+    <field-list fields="name, public_price, material_icon, color_for_icon" param/>
     <div param="actions">
       <submit label="#{ht 'product_type.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
+<def tag="form" for="Purchase">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="purchase_date, total, items" param/>
+    <div param="actions">
+      <submit label="#{ht 'purchase.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
+<def tag="form" for="Sale">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="sale_date, total" param/>
+    <div param="actions">
+      <submit label="#{ht 'sale.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
   </form>
 </def>

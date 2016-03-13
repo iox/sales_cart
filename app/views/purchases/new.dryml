@@ -1,0 +1,21 @@
+<new-page/>
+
+<def tag="form" for="Purchase">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="purchase_date, items">
+      <purchase-date-label:>Date</purchase-date-label:>
+      <items-view:>
+        <input-many minimum="1" fields="expiration_date, product_type, amount">
+          <input:amount class="in-many-time span2" name="purchase[items][0][amount]" type="text" value="" placeholder="Amount"/>&nbsp;
+          <input:purchase-price class="span2" placeholder="Unit price"/>
+          <input:expiration-date class="span2" placeholder="Expiration Date"/>
+          <input:product_type/>
+        </input-many>
+      </items-view:>
+    </field-list>
+    <div param="actions">
+      <submit label="#{ht 'purchase.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>

@@ -15,3 +15,34 @@
 <include src="taglibs/auto/rapid/forms"/>
 
 <include src="application"/>
+
+<include gem="hobo-metasearch" />
+
+
+<extend tag="page">
+  <old-page merge>
+    <viewport: content="width=device-width, user-scalable=no"/>
+    <account-nav:>
+      <logged-in-as: replace>
+    <nav-item href="#{base_url}/">Home</nav-item>
+    <nav-item with="&Item"><ht key="item.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
+    <nav-item with="&ProductType"><ht key="product_type.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
+    <nav-item with="&Purchase"><ht key="purchase.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
+    <nav-item with="&Sale"><ht key="purchase.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
+
+
+      
+      </logged-in-as:>
+      <sign-up: replace/>
+      <search: replace/>
+      <account: replace/>
+    </account-nav:>
+  </old-page>
+</extend>
+
+
+<def tag="main-nav">
+  <navigation class="main-nav" merge-attrs param="default">
+
+  </navigation>
+</def>

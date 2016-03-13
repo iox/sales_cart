@@ -1,0 +1,3 @@
+%show-page
+  %append-content-body:
+    %table.table{with: "&this.items", fields: "this, product_type, expiration_date, purchase_price, sale_price"}

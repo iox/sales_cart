@@ -1,0 +1,33 @@
+.clear
+  clear: both
+
+#sales-form table
+  th, td
+    padding: 10px 8px
+    text-align: left
+    &.text-right
+      text-align: right
+
+.btn-product
+  display: block
+  margin: 10px 10px
+  width: 100px
+  height: 70px
+  float: left
+  p
+    margin: 0
+
+
+@media (max-width: 767px)
+  .btn-product
+    width: auto
+    height: auto
+    font-size: 1em
+    padding: 5px
+    margin: 3px
+
+    p
+      display: none
+
+    .material-icons.md-48
+      font-size: 32px
