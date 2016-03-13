@@ -1,6 +1,18 @@
 <!-- AUTOMATICALLY GENERATED FILE - DO NOT EDIT -->
 
 
+<def tag="form" for="ProductType">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="name, sell_price, purchase_price" param/>
+    <div param="actions">
+      <submit label="#{ht 'product_type.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
 <def tag="form" for="User">
   <form merge param="default">
     <error-messages param/>

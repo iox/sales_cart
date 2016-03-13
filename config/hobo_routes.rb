@@ -5,6 +5,10 @@
 Vanilla::Application.routes.draw do
 
 
+  # Resource routes for controller product_types
+  resources :product_types
+
+
   # Resource routes for controller users
   resources :users, :only => [:edit, :show, :create, :update, :destroy] do
     collection do

@@ -6,8 +6,121 @@
 <def tag="main-nav">
   <navigation class="main-nav" merge-attrs param="default">
     <nav-item href="#{base_url}/">Home</nav-item>
+    <nav-item with="&ProductType"><ht key="product_type.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
   </navigation>
 </def>
+
+
+
+
+<!-- ====== ProductType Pages ====== -->
+
+<def tag="index-page" for="ProductType">
+  <page merge title="#{ht 'product_type.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page product-type" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="product_type.index.heading">
+          <model-name-human model="&model"/>
+        </ht>
+      </h2>
+
+      <p param="count" if>
+        <ht key="product_type.collection.count" count="&collection_count">
+          <count summary/>
+        </ht>
+      </p>
+    </content-header:>
+
+    <content-body: param>
+      <a action="new" to="&model" param="new-link">
+        <ht key="product_type.actions.new">New Product type</ht>
+      </a>
+
+      <page-nav param="top-page-nav"/>
+
+      <collection param/>
+
+      <page-nav param="bottom-page-nav"/>
+
+
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="ProductType">
+  <page merge title="#{ht 'product_type.new.title', :default=>[' New Product type'] }">
+    <body: class="new-page product-type" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="product_type.new.heading">
+          New Product type
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <form param>
+        <submit: label="#{ht 'product_type.actions.create', :default=>['Create Product type']}"/>
+      </form>
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="ProductType">
+  <page merge title="#{ht 'product_type.show.title', :default=>['Product type'], :name => name(:no_wrapper => true) }" without-aside >
+
+    <body: class="show-page product-type" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="product_type.show.heading" name="#{name(:no_wrapper => true)}">
+          Product type <name/>
+        </ht>
+      </h2>
+
+      <record-flags fields="" param/>
+
+      <a action="edit" if="&can_edit?" param="edit-link">
+        <ht key="product_type.actions.edit" name="#{name(:no_wrapper => true)}">
+          Edit Product type
+        </ht>
+      </a>
+    </content-header:>
+
+    <content-body: param>
+      <field-list fields="sell_price, purchase_price" param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="ProductType">
+  <page merge title="#{ht 'product_type.edit.title', :default=>['Edit Product type'], :name => name(:no_wrapper => true) }">
+
+    <body: class="edit-page product-type" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="product_type.edit.heading" name="#{name(:no_wrapper => true)}">
+          Edit Product type
+        </ht>
+      </h2>
+      <delete-button label="#{ht 'product_type.actions.delete', :default=>['Remove This Product type']}" param/>
+    </content-header:>
+
+    <content-body: param>
+      <form param/>
+    </content-body:>
+
+  </page>
+</def>
+
 
 
 
