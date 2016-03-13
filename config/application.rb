@@ -27,7 +27,9 @@ module Vanilla
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
 
-    config.web_console.whitelisted_ips += ["10.0.3.1"]
-    BetterErrors::Middleware.allow_ip! '10.0.3.1'
+    if Rails.env.development?
+      config.web_console.whitelisted_ips += ["10.0.3.1"]
+      BetterErrors::Middleware.allow_ip! '10.0.3.1'
+    end
   end
 end
