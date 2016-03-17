@@ -2,7 +2,10 @@ $ ->
   new FastClick(document.body)
 
   items = []
-  window.addItem = (id, name, price) ->
+  window.addItem = (id, name, price, out_of_stock = false) ->
+    if out_of_stock
+      return alert('This item is out of stock')
+
     items.push
       id: id
       name: name

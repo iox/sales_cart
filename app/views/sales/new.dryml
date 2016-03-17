@@ -14,7 +14,7 @@
 
 <def tag="product-icons">
   <repeat with="&ProductType.all">
-    <a class="btn btn-large btn-product" href="#" onclick="addItem(#{this.id}, '#{this.name}', #{this.public_price}); return false;">
+    <a class="btn btn-large btn-product #{'disabled' if this.out_of_stock?}" href="#" onclick="addItem(#{this.id}, '#{this.name}', #{this.public_price}, #{this.out_of_stock?}); return false;">
       <i class="material-icons md-48" style="color: #{this.color_for_icon}"><this.material-icon/></i>
       <p><this.name/></p>
     </a>

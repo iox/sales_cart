@@ -21,6 +21,14 @@ class ProductType < ActiveRecord::Base
     items.sold.count
   end
 
+  def out_of_stock?
+    available_count < 1
+  end
+
+  def color_for_icon
+    out_of_stock? ? 'grey' : super
+  end
+
   # --- Permissions --- #
 
   def create_permitted?
