@@ -1,5 +1,6 @@
 <index-page>
-  <append-content-body:>
+  <collection: replace>
+    <table-plus-with-filters with="&@sales" fields="this, sale_date, total" filters="sale_date"/>
     <%= link_to "<i class='icon-list'></i> Export to CSV".html_safe, params.merge({:format => 'text'}), class: 'btn pull-right' %>
-  </append-content-body:>
+  </collection:>
 </index-page>

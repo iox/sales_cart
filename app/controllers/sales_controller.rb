@@ -25,11 +25,14 @@ class SalesController < ApplicationController
   end
 
   def index
-    @sales = Sale.paginate(page: params[:page])
+    params[:q] = Hash.new if !params[:q]
+
+    @search = Sale.search(params[:q])
+    @sales = @search.result.paginate(:page => params[:page])
 
     respond_to do |format|
       format.html
-      format.text { render csv: Sale.all }
+      format.text { render csv: @search.result }
     end
   end
 
