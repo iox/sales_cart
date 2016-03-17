@@ -40,7 +40,7 @@
 <def tag="form" for="Sale">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="sale_date, total" param/>
+    <field-list fields="name, sale_date, total" param/>
     <div param="actions">
       <submit label="#{ht 'sale.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>

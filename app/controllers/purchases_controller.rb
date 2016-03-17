@@ -9,7 +9,7 @@ class PurchasesController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.text { render csv: @purchases }
+      format.text { render csv: Purchase.all }
     end
   end
 

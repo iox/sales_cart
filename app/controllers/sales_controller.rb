@@ -24,4 +24,13 @@ class SalesController < ApplicationController
     render :json => sale.reload
   end
 
+  def index
+    @sales = Sale.paginate(page: params[:page])
+
+    respond_to do |format|
+      format.html
+      format.text { render csv: Sale.all }
+    end
+  end
+
 end

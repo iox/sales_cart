@@ -1,0 +1,5 @@
+<index-page>
+  <append-content-body:>
+    <%= link_to "<i class='icon-list'></i> Export to CSV".html_safe, params.merge({:format => 'text'}), class: 'btn pull-right' %>
+  </append-content-body:>
+</index-page>
