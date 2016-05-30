@@ -1,0 +1,13 @@
+
+
+-------------------------------------------------------------------------------------------------------
+<% if params[:q][:sale_date_gteq] %>
+  <%= l(params[:q][:sale_date_gteq].to_date, format: '%d.%m.%Y') %> - <%= l(params[:q][:sale_date_lteq].to_date, format: '%d.%m.%Y') %>
+<% end %>
+
+
+
+
+<%= @table %>
+
+

@@ -32,8 +32,38 @@ class SalesController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.text { render csv: @search.result }
+      format.text { prepare_text_table }
+      format.csv { render csv: @search.result, filename: "EXPORT-SALES-#{I18n.l(Date.today, format: '%d.%m.%Y')}" }
     end
+  end
+
+  private
+
+  def prepare_text_table
+    # Prepare data: group items from the search results
+    sold_items = []
+    for sale in @search.result
+      sold_items += sale.items.to_a
+    end
+    grouped_items = sold_items.group_by(&:product_type)
+
+    # Table styling
+    headings = ["Producttype", "Purchase Price", "Selling Price", "Count", "Total Purchase", "Total Selling"]
+    style = {padding_left: 2, padding_right: 2}
+
+    # Generate a text table
+    @table = Terminal::Table.new :headings => headings, :style => style do |t|
+      grouped_items.each do |product_type, items|
+        t << [product_type.name, items.first.purchase_price, items.first.sale_price, items.size, items.sum(&:purchase_price), items.sum(&:sale_price)]
+      end
+      t << :separator
+      t << ["Total", nil, nil, nil, sold_items.sum(&:purchase_price), sold_items.sum(&:sale_price)]
+    end
+    @table.align_column(1, :right)
+    @table.align_column(2, :right)
+    @table.align_column(3, :right)
+    @table.align_column(4, :right)
+    @table.align_column(5, :right)
   end
 
 end

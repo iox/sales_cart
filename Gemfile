@@ -42,7 +42,7 @@ group :development do
   gem 'web-console', '~> 2.0'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
+  # gem 'spring'
 
   gem "better_errors"
   gem "binding_of_caller"
@@ -68,3 +68,4 @@ gem 'hobo_jquery_ui', '2.2.5'
 gem 'hobo_bootstrap_ui', github: "Hobo/hobo_bootstrap_ui"
 gem 'jquery-ui-themes', '~> 0.0.4'
 gem 'sprockets-rails' , '~> 3.0'
+gem 'terminal-table'

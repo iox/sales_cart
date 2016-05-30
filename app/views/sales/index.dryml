@@ -1,6 +1,7 @@
 <index-page>
   <collection: replace>
     <table-plus-with-filters with="&@sales" fields="this, sale_date, total" filters="sale_date"/>
-    <%= link_to "<i class='icon-list'></i> Export to CSV".html_safe, params.merge({:format => 'text'}), class: 'btn pull-right' %>
+    <%= link_to "<i class='icon-list'></i> Export to CSV".html_safe, params.merge({:format => 'csv'}), class: 'btn pull-right' %>&nbsp;
+    <%= link_to "<i class='icon-book'></i> Export to Text Report".html_safe, params.merge({:format => 'text'}), class: 'btn pull-right', style: 'margin-right: 10px' %>
   </collection:>
 </index-page>
