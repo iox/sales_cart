@@ -48,7 +48,6 @@ $ ->
 
 
   window.updateQueueStatus = ->
-    console.log("updateQueueStatus")
     sales = JSON.parse(localStorage.sales)
     if sales.length > 0
       $("#queue_status").html "#{sales.length} sale(s) in queue"
@@ -61,6 +60,7 @@ $ ->
   updateQueueStatus()
   setInterval ->
     sales = JSON.parse(localStorage.sales)
+    updateQueueStatus()
 
     for sale in sales
 
@@ -68,13 +68,13 @@ $ ->
         indexOfSale = sales.indexOf(sale)
         sales.splice(indexOfSale)
         localStorage.sales = JSON.stringify(sales)
+        updateQueueStatus()
 
       ).fail (data) ->
         console.log("Error: could not send the sale to the server. Retrying in 5 seconds.")
         if data.responseJSON && data.responseJSON.errors
           alert("Error: #{data.responseJSON.errors}")
 
-      updateQueueStatus()
   , 5000
 
 
