@@ -1,6 +1,8 @@
 $ ->
   new FastClick(document.body)
 
+  localStorage.sales ||= JSON.stringify []
+
   items = []
   window.addItem = (id, name, price, out_of_stock = false) ->
     if out_of_stock
@@ -32,10 +34,48 @@ $ ->
     updateCart()
 
   window.pay = () ->
-    $.post("/sales", {rows: JSON.stringify(items)}, ->
-      items = []
-      $('.alert-success').show().fadeOut(2000)
-      updateCart()
-    ).fail (data) ->
-      console.log(data.responseJSON.errors)
-      alert("Error: #{data.responseJSON.errors}")
+    # Load localStorage, add the new sale and save it
+    sales = JSON.parse(localStorage.sales)
+    sales.push(items)
+    localStorage.sales = JSON.stringify(sales)
+
+    # Clean up the form for the next sale
+    items = []
+    updateCart()
+
+    $('.alert-success').show().fadeOut(2000)
+    updateQueueStatus()
+
+
+  window.updateQueueStatus = ->
+    console.log("updateQueueStatus")
+    sales = JSON.parse(localStorage.sales)
+    if sales.length > 0
+      $("#queue_status").html "#{sales.length} sale(s) in queue"
+      $("#queue_status").show()
+    else
+      $("#queue_status").html("All sales are synced with the server")
+      $("#queue_status").show().fadeOut(5000)
+
+
+  updateQueueStatus()
+  setInterval ->
+    sales = JSON.parse(localStorage.sales)
+
+    for sale in sales
+
+      $.post("/sales", {rows: JSON.stringify(sale)}, ->
+        indexOfSale = sales.indexOf(sale)
+        sales.splice(indexOfSale)
+        localStorage.sales = JSON.stringify(sales)
+
+      ).fail (data) ->
+        console.log("Error: could not send the sale to the server. Retrying in 5 seconds.")
+        if data.responseJSON && data.responseJSON.errors
+          alert("Error: #{data.responseJSON.errors}")
+
+      updateQueueStatus()
+  , 5000
+
+
+

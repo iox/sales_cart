@@ -6,6 +6,25 @@ Rails.application.routes.draw do
   get 'users/:id/activate_from_email/:key' => 'users#activate', :as => 'activate_from_email'
   post 'search' => 'front#search', :as => 'site_search_post'
   get 'search' => 'front#search', :as => 'site_search'
+
+
+  # Generate offline manifest file, so assets are stored for offline usage
+  rack_offline = Rack::Offline.configure :cache_interval => (Rails.env == "development" ? 1 : 1000) do
+    action_view = ActionView::Base.new
+    action_view.stylesheet_link_tag("front").split("\n").collect{|a|          cache a.match(/href=\"(.*)\"/)[1] }
+    action_view.javascript_include_tag("front").split("\n").collect{|a|       cache a.match(/src=\"(.*)\"/)[1] }
+    cache action_view.font_path("MaterialIcons-Regular.woff2")
+
+    network "/"
+
+    fallback
+  end
+
+  get "/application.manifest" => rack_offline
+
+
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

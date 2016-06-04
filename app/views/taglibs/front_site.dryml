@@ -15,6 +15,7 @@
 <include src="taglibs/auto/rapid/forms"/>
 
 <include src="application"/>
+<include src="custom_page"/>
 
 <include gem="hobo-metasearch" />
 

@@ -43,6 +43,12 @@ GIT
       hobo_bootstrap (>= 2.0)
 
 GIT
+  remote: git://github.com/murb/rack-offline.git
+  revision: fa009b2717be57b300209f448644b502d8bcc6f1
+  specs:
+    rack-offline (0.6.4)
+
+GIT
   remote: git://github.com/suyccom/hobo-metasearch
   revision: 2ee3c30eaabf8140801efae8cadb3f431405b42e
   specs:
@@ -252,6 +258,7 @@ DEPENDENCIES
   material_icons
   protected_attributes
   quiet_assets
+  rack-offline!
   rails (= 4.2.4)
   render_csv
   responders (~> 2.0)

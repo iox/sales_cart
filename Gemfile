@@ -69,3 +69,4 @@ gem 'hobo_bootstrap_ui', github: "Hobo/hobo_bootstrap_ui"
 gem 'jquery-ui-themes', '~> 0.0.4'
 gem 'sprockets-rails' , '~> 3.0'
 gem 'terminal-table'
+gem 'rack-offline', github: 'murb/rack-offline'
