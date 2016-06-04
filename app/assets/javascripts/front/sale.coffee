@@ -51,10 +51,8 @@ $ ->
     sales = JSON.parse(localStorage.sales)
     if sales.length > 0
       $("#queue_status").html "#{sales.length} sale(s) in queue"
-      $("#queue_status").show()
     else
       $("#queue_status").html("All sales are synced with the server")
-      $("#queue_status").show().fadeOut(5000)
 
 
   updateQueueStatus()
