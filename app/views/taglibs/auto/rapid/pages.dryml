@@ -189,7 +189,7 @@
         </ht>
       </h2>
 
-      <record-flags fields="" param/>
+      <record-flags fields="vat" param/>
 
       <a action="edit" if="&can_edit?" param="edit-link">
         <ht key="product_type.actions.edit" name="#{name(:no_wrapper => true)}">
@@ -302,6 +302,12 @@
       </h2>
 
       <record-flags fields="" param/>
+
+      <a action="edit" if="&can_edit?" param="edit-link">
+        <ht key="purchase.actions.edit" name="#{name(:no_wrapper => true)}">
+          Edit Purchase
+        </ht>
+      </a>
     </content-header:>
 
     <content-body: param>

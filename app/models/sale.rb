@@ -17,6 +17,7 @@ class Sale < ActiveRecord::Base
   before_destroy :mark_items_as_available
   def mark_items_as_available
     items.update_all("sale_id = NULL")
+    items.update_all("sale_price = NULL")
   end
 
   def update_total

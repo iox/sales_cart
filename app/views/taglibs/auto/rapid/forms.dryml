@@ -16,7 +16,7 @@
 <def tag="form" for="ProductType">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="name, public_price, material_icon, color_for_icon" param/>
+    <field-list fields="name, public_price, material_icon, color_for_icon, vat" param/>
     <div param="actions">
       <submit label="#{ht 'product_type.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160317152446) do
+ActiveRecord::Schema.define(version: 20160604160535) do
 
   create_table "items", force: :cascade do |t|
     t.date     "expiration_date"
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 20160317152446) do
     t.datetime "updated_at"
     t.string   "material_icon"
     t.string   "color_for_icon"
+    t.boolean  "vat",                                    default: false
   end
 
   create_table "purchases", force: :cascade do |t|

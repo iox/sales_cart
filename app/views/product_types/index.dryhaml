@@ -1,2 +1,2 @@
 %index-page
-  %collection:{fields:"this, name, public_price, available_count, sold_count, actions"}
+  %collection:{fields:"this, name, public_price, available_count, sold_count, vat, actions"}

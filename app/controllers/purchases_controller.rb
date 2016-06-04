@@ -2,7 +2,7 @@ class PurchasesController < ApplicationController
 
   hobo_model_controller
 
-  auto_actions :all, except: [:edit, :update]
+  auto_actions :all
 
   def index
     @purchases = Purchase.paginate(:page => params[:page])

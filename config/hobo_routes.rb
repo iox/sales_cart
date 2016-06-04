@@ -35,7 +35,7 @@ SalesCart::Application.routes.draw do
 
 
   # Resource routes for controller purchases
-  resources :purchases, :only => [:index, :new, :show, :create, :destroy]
+  resources :purchases
 
 
   # Resource routes for controller sales

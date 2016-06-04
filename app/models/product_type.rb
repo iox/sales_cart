@@ -7,9 +7,10 @@ class ProductType < ActiveRecord::Base
     public_price   :decimal, :precision => 8, :scale => 2
     material_icon  :string
     color_for_icon :string
+    vat            :boolean, default: false
     timestamps
   end
-  attr_accessible :name, :public_price, :material_icon, :color_for_icon
+  attr_accessible :name, :public_price, :material_icon, :color_for_icon, :vat
 
   has_many :items
 

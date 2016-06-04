@@ -1,5 +1,5 @@
 <index-page>
-  <collection: fields="this, purchase_date, total"/>
+  <collection: fields="this, purchase_date, total, actions"/>
   <append-content-body:>
     <%= link_to "<i class='icon-list'></i> Export to CSV".html_safe, params.merge({:format => 'text'}), class: 'btn pull-right' %>
   </append-content-body:>
