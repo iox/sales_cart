@@ -47,3 +47,14 @@
 
   </navigation>
 </def>
+
+<extend tag="form" for="ProductType">
+  <form merge>
+    <field-list merge>
+      <after-material-icon-view:>
+        <br/>
+        <span style="color: #555">Browse the <a href="https://design.google.com/icons/" target="_blank">library of Material Icons</a> and enter its name in this field. For example, "donut_small"</span>
+      </after-material-icon-view:>
+    </field-list>
+  </form>
+</extend>

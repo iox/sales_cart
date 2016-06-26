@@ -1,0 +1,8 @@
+<show-page>
+  <after-field-list:>
+    <h4>Icon Preview</h4>
+    <div style="padding: 20px; width: 100px; border: 1px solid grey;">
+      <i class="material-icons md-48" style="font-size: 100px; color: #{this.color_for_icon}"><this.material-icon/></i>
+    </div>
+  </after-field-list:>
+</show-page>
