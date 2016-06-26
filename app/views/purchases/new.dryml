@@ -8,7 +8,7 @@
       <items-view:>
         <input-many minimum="1" fields="expiration_date, product_type, amount">
           <input:amount class="in-many-time span2" name="purchase[items][0][amount]" type="text" value="" placeholder="Amount"/>&nbsp;
-          <input:purchase-price class="span2" placeholder="Unit price"/>
+          <input:purchase-price class="span2" placeholder="Unit price (with VAT)"/>
           <input:expiration-date class="span2" placeholder="Expiration Date"/>
           <input:product_type/>
         </input-many>

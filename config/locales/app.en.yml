@@ -4,6 +4,12 @@
 en:
   hello: "Hello world"
 
+  activerecord:
+
+    attribute_help:
+      product_type:
+        public_price: Enter the price with VAT
+
 #  attributes:
 #    created_at: Created at
 #    updated_at: Updated at
