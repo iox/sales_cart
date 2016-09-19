@@ -34,6 +34,9 @@ $ ->
     updateCart()
 
   window.pay = () ->
+    if items.length == 0
+      return false
+
     # Load localStorage, add the new sale and save it
     sales = JSON.parse(localStorage.sales)
     sales.push(items)
@@ -71,7 +74,12 @@ $ ->
       ).fail (data) ->
         console.log("Error: could not send the sale to the server. Retrying in 5 seconds.")
         if data.responseJSON && data.responseJSON.errors
-          alert("Error: #{data.responseJSON.errors}")
+          # If the server returned an error, inform the user, and delete the sale
+          alert("There was an error, and the sale was not saved: #{data.responseJSON.errors}")
+          indexOfSale = sales.indexOf(sale)
+          sales.splice(indexOfSale)
+          localStorage.sales = JSON.stringify(sales)
+          updateQueueStatus()
 
   , 5000
 
